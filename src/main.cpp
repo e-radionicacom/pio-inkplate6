@@ -1,8 +1,9 @@
 #include <Arduino.h>
 #include "Inkplate.h"
 #include "driver/rtc_io.h"
+#include "img1.h"
 
-Inkplate display(INKPLATE_1BIT);
+Inkplate display(INKPLATE_3BIT);
 
 void setup() {
   Wire.begin();
@@ -17,6 +18,7 @@ void setup() {
     display.setCursor(0, (600 / 8) * i);
     display.print("Hello World");
   }
+  display.drawBitmap3Bit(0,0,img,800,600);
   display.display();
   display.draw_mode_off();
   esp_sleep_enable_timer_wakeup(60 * 1000 * 1000);
